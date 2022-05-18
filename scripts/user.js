@@ -27,7 +27,7 @@ formulario.addEventListener('submit', async (e)=>{
         }
 
     await axios.post(url, userr)
-  
+        alert("Creado correctamente")
     
    
 })
@@ -37,21 +37,26 @@ btnCorreo.addEventListener("click", async () =>{
 
     let email = document.getElementById('email').value
     
-    console.log(email)
-    const { data } = await axios.get(url)
-
-   let buscarCorreo= data.find(user => user.correo === email)
-
-    console.log(buscarCorreo)
-
-    const {nombre, apellido, correo, id} = buscarCorreo
-    document.getElementById('name').value = nombre
-    document.getElementById('lastName').value = apellido
-    document.getElementById('email').value = correo
-   // document.getElementById('id').style.display='block'
-  //  document.getElementById('label-edit').style.display='block'
-    document.getElementById('id').value = id
-
+    
+    try {
+        console.log(email)
+        const { data } = await axios.get(url)
+    
+       let buscarCorreo= data.find(user => user.correo === email)
+    
+        console.log(buscarCorreo)
+    
+        const {nombre, apellido, correo, id} = buscarCorreo
+        document.getElementById('name').value = nombre
+        document.getElementById('lastName').value = apellido
+        document.getElementById('email').value = correo
+       // document.getElementById('id').style.display='block'
+      //  document.getElementById('label-edit').style.display='block'
+        document.getElementById('id').value = id
+    } catch (error) {
+        alert("usuario no existe")
+        formulario.reset();
+    }
 
 })
 
@@ -70,6 +75,7 @@ btnEditar.addEventListener('click', async ()=>{
         id: idM
     }
     await axios.put(url+idM, userr)
+    alert("editado correctamente")
     
 })
 
@@ -80,5 +86,6 @@ btnEliminar.addEventListener('click', async() =>{
     let idEliminar = document.getElementById('id').value
 
     await axios.delete(url+idEliminar)
+    alert("eliminado correctamente")
 
 })
