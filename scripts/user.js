@@ -76,9 +76,10 @@ try {
     }
     await axios.put(url+idM, userr)
     alert("editado correctamente")
+    formulario.reset();
 } catch (error) {
     alert('hubo un error', error)
-    formulario.reset();
+    
 }
     
     
