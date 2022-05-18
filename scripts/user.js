@@ -67,7 +67,7 @@ btnEditar.addEventListener('click', async ()=>{
     let lastNameM = document.getElementById('lastName').value;
     let emailM = document.getElementById('email').value
     let idM= document.getElementById('id').value
-
+try {
     let userr = {
         nombre: nameM,
         apellido:lastNameM,
@@ -76,6 +76,12 @@ btnEditar.addEventListener('click', async ()=>{
     }
     await axios.put(url+idM, userr)
     alert("editado correctamente")
+} catch (error) {
+    alert('hubo un error', error)
+    formulario.reset();
+}
+    
+    
     
 })
 
